@@ -1,0 +1,10 @@
+Package: analyzeR
+Title: This package contains functions that Stephanie uses for her analysis of recount RNAseq data.
+Version: 0.1
+Authors@R: person("Stephanie", "Yang", , "stephanie.yuxin.yang@gmail.com", role = c("aut", "cre"))
+Description: Personal package for Stephanie Yang, with modifications to functions from other packages.
+Depends:
+    R (>= 3.3.3)
+License: What license is it under?
+LazyData: true
+RoxygenNote: 6.1.0
