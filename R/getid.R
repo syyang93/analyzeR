@@ -16,5 +16,8 @@ getid <- function(scaled_rse){
   scaled_rse$submitted_subject_id2 <- gsub('-', '', scaled_rse$submitted_subject_id2)
   scaled_rse$submitted_subject_id <- paste0('GTEX-', scaled_rse$submitted_subject_id2)
   scaled_rse$submitted_subject_id2 <- NULL
-  return(scaled_rse)
+  indiv_count <- as.data.frame(matrix(nrow = 1, ncol = 2))
+  colnames(indiv_count) <- c('Number.individuals', 'Filtering.step')
+  indiv_count <- c(nrow(scaled_rse), 'Started with')
+  return(list(scaled_rse, indiv_count))
 }
