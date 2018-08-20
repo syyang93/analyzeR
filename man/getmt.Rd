@@ -4,7 +4,7 @@
 \alias{getmt}
 \title{Load and merge mtDNA-CN info}
 \usage{
-getmt(transcripts_t, mt_frame = mtDNA_CN_with_pheno)
+getmt(transcripts_t, indiv_count, mt_frame = mtDNA_CN_with_pheno)
 }
 \arguments{
 \item{transcripts_t}{scaled rse gene counts}
@@ -12,7 +12,7 @@ getmt(transcripts_t, mt_frame = mtDNA_CN_with_pheno)
 \item{mt_frame}{the data frame containing mtDNA-CN and read depth information}
 }
 \value{
-Returns the data frame with mtDNA-CN info
+Returns a data frame with mtDNA-CN info
 }
 \description{
 Load and merge mtDNA-CN info

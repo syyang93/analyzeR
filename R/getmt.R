@@ -5,15 +5,15 @@
 #' 
 #' @export
 #' 
-#' @return Returns the data frame with mtDNA-CN info
+#' @return Returns a data frame with mtDNA-CN info
 #' 
 #' @examples
 
-
-
-getmt <- function(transcripts_t, mt_frame = mtDNA_CN_with_pheno){
+getmt <- function(transcripts_t, indiv_count, mt_frame = mtDNA_CN_with_pheno){
   index <- which(colnames(transcripts_t) == 'submitted_subject_id')
-  only_id <- transcripts_t[,(index-1):index]
-  with.mt <- merge(only_id, mt_frame, by = 'submitted_subject_id')
-  return(with.mt)
+  only_id <- transcripts_t[,index]
+  with.mt <- mt_frame[which(mt_frame$submitted_subject_id %in% only_id),]
+  no_mt_info <- only_id[-which(only_id %in% mt_frame$submitted_subject_id)]
+  indiv_count <- rbind(indiv_count, c(length(no_mt_info), 'No mtDNA-CN info'))
+  return(list(with.mt, indiv_count))
 }
