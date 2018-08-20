@@ -7,7 +7,7 @@
 #' 
 #' @return Returns a data frame with mtDNA-CN info
 #' 
-#' @examples
+
 
 getmt <- function(transcripts_t, indiv_count, mt_frame = mtDNA_CN_with_pheno){
   index <- which(colnames(transcripts_t) == 'submitted_subject_id')

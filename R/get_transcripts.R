@@ -6,8 +6,7 @@
 #' @export
 #' 
 #' @return Transcripts for those individuals
-#' 
-#' @examples
+
 
 get_transcripts <- function(counts1, with_gtex) {
   indiv_count <- with_gtex[[2]]

@@ -3,7 +3,6 @@
 #' 
 #' @export
 #' 
-#' @examples
 
 remove_incomplete_covariates <- function(with.mt.mito) {
   indiv_count <- with.mt.mito[[2]]

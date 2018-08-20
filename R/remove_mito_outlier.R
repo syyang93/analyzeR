@@ -8,7 +8,7 @@
 #' 
 #' @return Transcripts for those individuals
 #' 
-#' @examples
+
 
 
 remove_mito_outlier <- function(with.mt.unalign){

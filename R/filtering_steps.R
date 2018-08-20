@@ -6,7 +6,6 @@
 #' 
 #' @return The data frame, after removing people who had incomplete RNAseq downloads
 #' 
-#' @examples
 #' 
 
 filtering_steps <- function(with_gtex) {

@@ -2,10 +2,12 @@
 % Please edit documentation in R/identify_pca_outliers.R
 \name{identify_pca_outliers}
 \alias{identify_pca_outliers}
-\title{Filters transcripts based on expression levels.  Also filters out individuals who are PCA outliers}
+\title{Filters transcripts based on expression levels.  
+Also filters out individuals who are PCA outliers until there are no more PCA outliers - using find_outlier}
 \usage{
-identify_pca_outliers(transcripts_t, name)
+identify_pca_outliers(transcripts_t, indiv_count)
 }
 \description{
-Filters transcripts based on expression levels.  Also filters out individuals who are PCA outliers
+Filters transcripts based on expression levels.  
+Also filters out individuals who are PCA outliers until there are no more PCA outliers - using find_outlier
 }

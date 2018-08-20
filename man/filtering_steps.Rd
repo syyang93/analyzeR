@@ -15,6 +15,3 @@ The data frame, after removing people who had incomplete RNAseq downloads
 \description{
 Filters out people who had incomplete RNAseq downloads from GTEx to recount
 }
-\examples{
-
-}

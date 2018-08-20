@@ -2,7 +2,6 @@
 #' 
 #' @export
 #' 
-#' @examples
 
 make_transcripts <- function(transcripts_t, with.mt.complete){
   kept <- which(transcripts_t$submitted_subject_id %in% with.mt.complete$submitted_subject_id)
