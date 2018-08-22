@@ -21,14 +21,14 @@ perm.for.cutoff <- function(permutations = 100, lm_full){
   for(i in 1:permutations)
   {
     print(paste0('on permutation ', i))
-    lm_full$MT_count <- sample(lm_full$MT_count)
+    lm_full$mtDNA_adjust_AGE <- sample(lm_full$mtDNA_adjust_AGE)
     lm_results <- testing_assoc(lm_full)
     
     # keeping minimum p-value in df
     permute_pvals[i, 1] <- i
     pvals <- lm_results$`Pr(>|t|)`
     permute_pvals[i, 2] <- min(pvals)
-    all_pvals[,1] <- pvals
+    all_pvals[,i] <- pvals
   }
   permute_pvals <- permute_pvals[order(permute_pvals$`Minimum pval`, decreasing = F),]
   cutoff_95_percent <- permute_pvals$`Minimum pval`[5]
