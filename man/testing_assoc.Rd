@@ -6,7 +6,7 @@
 This function will do a single linear regression and extract the coefficients from the regression.}
 \usage{
 testing_assoc(lm_full,
-  to_correct = "+ as.factor(covariates$SEX) + as.numeric(covariates$AGE)+ as.numeric(covariates$smrin) + as.factor(covariates$smcenter) + as.factor(covariates$RACE)+ as.numeric(covariates$TRISCHD) +as.factor(covariates$COHORT) + as.factor(covariates$DTHHRDY) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5")
+  to_correct = "+ as.factor(covariates$SEX) + as.numeric(covariates$AGE)+ as.numeric(covariates$RACE) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5 + covariates$PC6 + covariates$PC7 + covariates$PC8 + covariates$PC9 + covariates$PC10")
 }
 \arguments{
 \item{lm_full}{The data frame containing genes, covariates, and mtDNA-CN info}
