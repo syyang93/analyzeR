@@ -5,16 +5,15 @@
 \title{Function that tests for associations and returns results
 This function will do a single linear regression and extract the coefficients from the regression.}
 \usage{
-testing_assoc(lm_full)
+testing_assoc(lm_full,
+  to_correct = "+ as.factor(covariates$SEX) + as.numeric(covariates$AGE)+ as.numeric(covariates$smrin) + as.factor(covariates$smcenter) + as.factor(covariates$RACE)+ as.numeric(covariates$TRISCHD) +as.factor(covariates$COHORT) + as.factor(covariates$DTHHRDY) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5")
 }
 \arguments{
-\item{lm_data}{Our dependent variables.  Column = dependent variable, rows = observations (in this case, individuals) (numeric vector)}
-
-\item{count}{Our independent variable (numeric vector)}
-
-\item{covariates}{Covariates associated with each individual. Columns = covariates, rows = observations. (data.frame)}
+\item{lm_full}{The data frame containing genes, covariates, and mtDNA-CN info}
 
 \item{to_correct}{A string containing additional covariates to correct for.  ex: '+as.factor(covariates$DTHHRDY)+as.factor(covariates$RACE)'}
+
+\item{lm_data}{Our dependent variables.  Column = dependent variable, rows = observations (in this case, individuals) (numeric vector)}
 }
 \value{
 Coefficients from the regression
