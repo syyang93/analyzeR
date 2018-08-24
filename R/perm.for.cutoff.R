@@ -29,8 +29,9 @@ perm.for.cutoff <- function(permutations = 100, lm_full){
     pvals <- lm_results$`Pr(>|t|)`
     permute_pvals[i, 2] <- min(pvals)
     all_pvals[,i] <- pvals
-    rownames(all_pvals) <- rownames(lm_results)
   }
+  for_test <- lm_full[,1:length(grep('ENSG', colnames(lm_full)))] # the transcripts you're testing as your dependent variables
+  rownames(all_pvals) <- colnames(for_test)
   permute_pvals <- permute_pvals[order(permute_pvals$`Minimum pval`, decreasing = F),]
   cutoff_95_percent <- permute_pvals$`Minimum pval`[5]
   print(cutoff_95_percent)
