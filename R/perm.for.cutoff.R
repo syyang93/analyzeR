@@ -29,6 +29,7 @@ perm.for.cutoff <- function(permutations = 100, lm_full){
     pvals <- lm_results$`Pr(>|t|)`
     permute_pvals[i, 2] <- min(pvals)
     all_pvals[,i] <- pvals
+    rownames(all_pvals) <- rownames(lm_results)
   }
   permute_pvals <- permute_pvals[order(permute_pvals$`Minimum pval`, decreasing = F),]
   cutoff_95_percent <- permute_pvals$`Minimum pval`[5]

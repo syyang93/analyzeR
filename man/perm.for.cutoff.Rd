@@ -18,5 +18,5 @@ A 95% cutoff value, also a data frame with all the p-values from each permutatio
 Function that permutes the dataset and finds an appropriate cutoff value.
 }
 \examples{
-subcut_lm_results <- apply(subcut_for_test, 2, lm_test, count = MT_count, covariates = covariates, correct_for = '+ as.factor(covariates$GENDER) + as.numeric(covariates$AGE)+ as.numeric(covariates$smrin) + as.factor(covariates$smcenter) + as.factor(covariates$RACE)+ as.numeric(covariates$TRISCHD) +as.factor(covariates$COHORT) + as.factor(covariates$DTHHRDY) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5')
+perm.results <- perm.for.cutoff(permutations = 5, subcut_full)
 }
