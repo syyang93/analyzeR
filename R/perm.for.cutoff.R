@@ -21,7 +21,7 @@ perm.for.cutoff <- function(permutations = 100, lm_full){
   for(i in 1:permutations)
   {
     print(paste0('on permutation ', i))
-    lm_full$MT_count <- sample(lm_full$MT_count)
+    lm_full$mtDNA_adjust_AGE <- sample(lm_full$mtDNA_adjust_AGE)
     lm_results <- testing_assoc(lm_full)
     
     # keeping minimum p-value in df
