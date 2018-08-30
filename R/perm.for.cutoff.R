@@ -2,6 +2,7 @@
 #' 
 #' @param permutations The number of times you want to permute the data
 #' @param lm_full The dataset you want to test
+#' @param to_correct Covariates to correct for
 #' 
 #' @export
 #' 
@@ -11,7 +12,7 @@
 #' perm.results <- perm.for.cutoff(permutations = 5, subcut_full)
 
 
-perm.for.cutoff <- function(permutations = 100, lm_full){
+perm.for.cutoff <- function(permutations = 100, lm_full, to_correct='+ as.factor(covariates$SEX) + as.numeric(covariates$AGE)+ as.numeric(covariates$RACE) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5 + covariates$PC6 + covariates$PC7 + covariates$PC8 + covariates$PC9 + covariates$PC10'){
   permute_pvals<-as.data.frame(matrix(NA, nrow=permutations, ncol=2))
   colnames(permute_pvals) <- c('Permutation', 'Minimum pval')
   for_test <- lm_full[,1:length(grep('ENSG', colnames(lm_full)))] # the transcripts you're testing as your dependent variables
@@ -22,7 +23,7 @@ perm.for.cutoff <- function(permutations = 100, lm_full){
   {
     print(paste0('on permutation ', i))
     lm_full$mtDNA_adjust_AGE <- sample(lm_full$mtDNA_adjust_AGE)
-    lm_results <- testing_assoc(lm_full)
+    lm_results <- testing_assoc(lm_full, to_correct)
     
     # keeping minimum p-value in df
     permute_pvals[i, 1] <- i

@@ -4,12 +4,15 @@
 \alias{perm.for.cutoff}
 \title{Function that permutes the dataset and finds an appropriate cutoff value.}
 \usage{
-perm.for.cutoff(permutations = 100, lm_full)
+perm.for.cutoff(permutations = 100, lm_full,
+  to_correct = "+ as.factor(covariates$SEX) + as.numeric(covariates$AGE)+ as.numeric(covariates$RACE) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5 + covariates$PC6 + covariates$PC7 + covariates$PC8 + covariates$PC9 + covariates$PC10")
 }
 \arguments{
 \item{permutations}{The number of times you want to permute the data}
 
 \item{lm_full}{The dataset you want to test}
+
+\item{to_correct}{Covariates to correct for}
 }
 \value{
 A 95% cutoff value, also a data frame with all the p-values from each permutation (to make the overlaid p-val qqplot)
