@@ -22,7 +22,7 @@ identify_pca_outliers <- function(transcripts_t, indiv_count)
   zeroes <- colSums(no_runs == 0)
   cutoff <- nrow(no_runs) * 0.1
   length(zeroes[which(zeroes > cutoff)])
-  no_runs2 <- no_runs[,-which(zeroes > cutoff)]
+  if(length(zeroes[which(zeroes > cutoff)]) != 0) {no_runs2 <- no_runs[,-which(zeroes > cutoff)]} else{no_runs2 <- no_runs}
   print(paste0(ncol(no_runs2), ' transcripts after removing transcripts not expressed in > 90% of individuals'))
   no_runs <- no_runs2
 
