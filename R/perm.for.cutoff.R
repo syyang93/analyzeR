@@ -24,6 +24,8 @@ perm.for.cutoff <- function(permutations = 100, lm_full, to_correct='+ as.factor
     print(paste0('on permutation ', i))
     lm_full$mtDNA_adjust_AGE <- sample(lm_full$mtDNA_adjust_AGE)
     lm_results <- testing_assoc(lm_full, to_correct)
+    # reorder lm_results
+    lm_results <- lm_results[order(as.numeric(rownames(lm_results))),]
     
     # keeping minimum p-value in df
     permute_pvals[i, 1] <- i
@@ -31,8 +33,8 @@ perm.for.cutoff <- function(permutations = 100, lm_full, to_correct='+ as.factor
     permute_pvals[i, 2] <- min(pvals)
     all_pvals[,i] <- pvals
   }
-  for_test <- lm_full[,1:length(grep('ENSG', colnames(lm_full)))] # the transcripts you're testing as your dependent variables
-  rownames(all_pvals) <- colnames(for_test)
+  rownames(all_pvals) <- lm_results$gene_id
+  all_pvals$symbol <- lm_results$symbol
   permute_pvals <- permute_pvals[order(permute_pvals$`Minimum pval`, decreasing = F),]
   cutoff_95_percent <- permute_pvals$`Minimum pval`[5]
   print(cutoff_95_percent)
