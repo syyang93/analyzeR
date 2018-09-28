@@ -17,6 +17,11 @@
 
 lm_test <- function(lm_data, count, covariates = '', correct_for = ''){
   count <- as.numeric(count)
+
+  # rnaseq outliers > 3SD from the mean --> turn into NAs
+  m <- mean(count)
+  s <- sd(count)
+  
   formula <- as.formula(paste0('lm_data~count', correct_for))
   lm_MT <- lm(formula, na.action=na.exclude)
   care <- coef(summary(lm_MT))["count",]

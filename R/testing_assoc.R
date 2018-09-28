@@ -13,8 +13,8 @@
 #' lm_results <- testing_assoc(lm_full)
 
 testing_assoc <- function(lm_full, to_correct = '+ as.factor(covariates$SEX) + as.numeric(covariates$AGE)+ as.numeric(covariates$RACE) + covariates$PC1 + covariates$PC2 +covariates$PC3+ covariates$PC4 + covariates$PC5 + covariates$PC6 + covariates$PC7 + covariates$PC8 + covariates$PC9 + covariates$PC10'){
-  for_test <- lm_full[,1:length(grep('ENSG', colnames(lm_full)))] # the transcripts you're testing as your dependent variables
-  covariates <- lm_full[,(length(grep('ENSG', colnames(lm_full)))+1):ncol(lm_full)] # the covariates
+  for_test <- lm_full[, grep("ENSG", colnames(lm_full))]
+  covariates <- lm_full[, -grep("ENSG", colnames(lm_full))]
   MT_count_index <- grep('mtDNA_adjust_AGE', colnames(lm_full))
   MT_count <- as.numeric(lm_full[,MT_count_index]) # the MT_count
   
