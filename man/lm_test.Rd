@@ -5,7 +5,8 @@
 \title{Function that will allow for (apply) to be used for linear regressions 
 This function will do a single linear regression and extract the coefficients from the regression.}
 \usage{
-lm_test(lm_data, count, covariates = "", correct_for = "")
+lm_test(lm_data, count, covariates = "", correct_for = "",
+  outlier_sd = 3)
 }
 \arguments{
 \item{lm_data}{Our dependent variables.  Column = dependent variable, rows = observations (in this case, individuals) (numeric vector)}
@@ -13,6 +14,8 @@ lm_test(lm_data, count, covariates = "", correct_for = "")
 \item{count}{Our independent variable (numeric vector)}
 
 \item{covariates}{Covariates associated with each individual. Columns = covariates, rows = observations. (data.frame)}
+
+\item{outlier_sd}{Outliers that are greater than outlier_sd standard devs from the mean will be filtered out}
 
 \item{to_correct}{A string containing additional covariates to correct for.  ex: '+as.factor(covariates$DTHHRDY)+as.factor(covariates$RACE)'}
 }

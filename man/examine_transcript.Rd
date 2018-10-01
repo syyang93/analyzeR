@@ -4,7 +4,8 @@
 \alias{examine_transcript}
 \title{Gets the transcripts for people who remain after filtering}
 \usage{
-examine_transcript(lm_data, transcript, indiv = 304)
+examine_transcript(lm_data, transcript, indiv = 304,
+  correct_for = "as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +\\n                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10")
 }
 \arguments{
 \item{counts1}{data frame containing the scaled counts from rse_gene (assay(rse_gene))}
