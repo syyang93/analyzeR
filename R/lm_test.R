@@ -15,14 +15,18 @@
 
 
 
-lm_test <- function(lm_data, count, covariates = '', correct_for = '', outlier_sd = 3){
+lm_test <- function(lm_data, count, covariates = '', correct_for = '', outlier_sd = 3, omit.outlier = T){
   count <- as.numeric(count)
-
+  
   # rnaseq outliers > 3SD from the mean --> turn into NAs
-  m <- mean(lm_data)
-  s <- sd(lm_data)
-  outliers <- which(lm_data > m + outlier_sd*s | lm_data < m - outlier_sd*s)
-  if(length(outliers) != 0){lm_data[outliers] <- NA}
+  if(omit.outlier == T)
+  {
+    m <- mean(lm_data)
+    s <- sd(lm_data)
+    outliers <- which(lm_data > m + outlier_sd*s | lm_data < m - outlier_sd*s)
+    if(length(outliers) != 0){lm_data[outliers] <- NA}
+  }
+  
   formula <- as.formula(paste0('lm_data~count', correct_for))
   lm_MT <- lm(formula, na.action=na.exclude)
   care <- coef(summary(lm_MT))["count",]

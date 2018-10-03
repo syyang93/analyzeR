@@ -6,7 +6,7 @@
 This function will do a single linear regression and extract the coefficients from the regression.}
 \usage{
 lm_test(lm_data, count, covariates = "", correct_for = "",
-  outlier_sd = 3)
+  outlier_sd = 3, omit.outlier = T)
 }
 \arguments{
 \item{lm_data}{Our dependent variables.  Column = dependent variable, rows = observations (in this case, individuals) (numeric vector)}

@@ -4,13 +4,17 @@
 \alias{examine_transcript}
 \title{Gets the transcripts for people who remain after filtering}
 \usage{
-examine_transcript(lm_data, transcript, indiv = 304,
+examine_transcript(lm_data, transcript, omit.outlier = T,
   correct_for = "as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +\\n                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10")
 }
 \arguments{
-\item{counts1}{data frame containing the scaled counts from rse_gene (assay(rse_gene))}
+\item{lm_data}{lm_full you want to examine the transcript in}
 
-\item{with_gtex}{data frame with GTEx IDs}
+\item{transcript}{a string with the ensembl ID of the transcript you want to look at}
+
+\item{omit.outlier}{T/F whether you want to omit outliers > 3SD away from the mean}
+
+\item{correct_for}{a string that says what you need to correct transcripts for}
 }
 \value{
 Transcripts for those individuals
