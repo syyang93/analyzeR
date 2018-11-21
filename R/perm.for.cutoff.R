@@ -25,7 +25,7 @@ perm.for.cutoff <- function(permutations = 100, lm_full, to_correct='+ as.factor
     lm_full$mtDNA_adjust_AGE <- sample(lm_full$mtDNA_adjust_AGE)
     lm_results <- testing_assoc(lm_full, to_correct)
     # reorder lm_results
-    lm_results <- lm_results[order(as.numeric(rownames(lm_results))),]
+    lm_results <- lm_results[order(rownames(lm_results)),]
     
     # keeping minimum p-value in df
     permute_pvals[i, 1] <- i
