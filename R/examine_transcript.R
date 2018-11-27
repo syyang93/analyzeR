@@ -55,4 +55,4 @@ examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_fo
 # examine_transcript(lm_full, 'ENSG00000140521.12', 308) + ggtitle('POLG')
 # examine_transcript(lm_full, "ENSG00000108064.10", 308) + ggtitle('TFAM')
 # examine_transcript(lm_full, "ENSG00000186814.12", 308) + ggtitle('ZSCAN30')
-# examine_transcript(lm_full, "ENSG00000178057.14", 291) + ggtitle('NDUFAF3')g
+# examine_transcript(lm_full, "ENSG00000178057.14", 291) + ggtitle('NDUFAF3')
