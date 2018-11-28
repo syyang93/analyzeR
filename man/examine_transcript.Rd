@@ -2,10 +2,11 @@
 % Please edit documentation in R/examine_transcript.R
 \name{examine_transcript}
 \alias{examine_transcript}
-\title{Gets the transcripts for people who remain after filtering}
+\title{Gets the adjusted variable plot for mtDNA vs transcripts for people who remain after filtering}
 \usage{
 examine_transcript(lm_data, transcript, omit.outlier = T,
-  correct_for = "as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +\\n                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10")
+  correct_for = "as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +\\n                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10",
+  col = NA)
 }
 \arguments{
 \item{lm_data}{lm_full you want to examine the transcript in}
@@ -15,13 +16,15 @@ examine_transcript(lm_data, transcript, omit.outlier = T,
 \item{omit.outlier}{T/F whether you want to omit outliers > 3SD away from the mean}
 
 \item{correct_for}{a string that says what you need to correct transcripts for}
+
+\item{col}{A string, what you want to color the adjusted variable plot with}
 }
 \value{
 Transcripts for those individuals
 }
 \description{
-Gets the transcripts for people who remain after filtering
+Gets the adjusted variable plot for mtDNA vs transcripts for people who remain after filtering
 }
 \examples{
-examine_transcript(blood_full, 'ENSG00000141527.16')
+examine_transcript(blood_full, 'ENSG00000141527.16', omit.outlier = T, correct_for = 'as.factor(lm_data$SEX)', col = 'esoph_day')
 }
