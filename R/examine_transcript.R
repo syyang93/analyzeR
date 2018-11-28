@@ -36,7 +36,7 @@ examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_fo
   resids$esoph_day <- lm_data$esoph_day
   resids <- na.omit(resids)
   print(summary(lm(resids$transcript~resids$CN)))
-  if(col == NA)
+  if(is.na(col))
   {
   	g <- ggplot(resids, aes(x=CN, y=transcript))+geom_point()+geom_smooth(method="lm", formula=y~x)
   } else{ g <- ggplot(resids, aes(x=CN, y=transcript, col = col))+geom_point()+geom_smooth(method="lm", formula=y~x)}
