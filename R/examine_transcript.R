@@ -1,20 +1,20 @@
-#' Gets the transcripts for people who remain after filtering
+#' Gets the adjusted variable plot for mtDNA vs transcripts for people who remain after filtering
 #' 
 #' @param lm_data lm_full you want to examine the transcript in 
 #' @param transcript a string with the ensembl ID of the transcript you want to look at
 #' @param correct_for a string that says what you need to correct transcripts for
 #' @param omit.outlier T/F whether you want to omit outliers > 3SD away from the mean
-#' 
+#' @param col A string, what you want to color the adjusted variable plot with
 #' 
 #' @export
 #' 
 #' @return Transcripts for those individuals
 #' 
 #' @examples
-#' examine_transcript(blood_full, 'ENSG00000141527.16')
+#' examine_transcript(blood_full, 'ENSG00000141527.16', omit.outlier = T, correct_for = 'as.factor(lm_data$SEX)', col = 'esoph_day')
 
 examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_for = 'as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +
-                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10'){
+                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10', col = NA){
   indiv <- nrow(lm_data)
   require(ggplot2)
   resids<-as.data.frame(matrix(NA, nrow=indiv, ncol=2))
@@ -32,11 +32,14 @@ examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_fo
     if(length(outliers) != 0){resids$transcript[outliers] <- NA}
   }
   resids$CN<-lm_data$mtDNA_adjust_AGE
+  resids$col <- lm_data[[col]]
+  resids$esoph_day <- lm_data$esoph_day
   resids <- na.omit(resids)
   print(summary(lm(resids$transcript~resids$CN)))
-  g <- ggplot(resids, aes(x=CN, y=transcript))+geom_point()+geom_smooth(method="lm", formula=y~x)
-  print(summary(lm(resids$transcript~resids$CN))$coef['resids$CN',])
-  return(g)
+  if(col == NA)
+  {
+  	g <- ggplot(resids, aes(x=CN, y=transcript))+geom_point()+geom_smooth(method="lm", formula=y~x)
+  } else{ g <- ggplot(resids, aes(x=CN, y=transcript, col = col))+geom_point()+geom_smooth(method="lm", formula=y~x)}
 }
 
 # examine_transcript(lm_full, 'ENSG00000225972.1', 291) + ylab('MT-ND1P23')
