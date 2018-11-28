@@ -2,7 +2,7 @@
 % Please edit documentation in R/testing_assoc.R
 \name{testing_assoc}
 \alias{testing_assoc}
-\title{Function that tests for associations and returns results
+\title{Function that tests for associations and returns results.  DOES NOT merge with gene info, for use with tpm datasets.
 This function will do a single linear regression and extract the coefficients from the regression.}
 \usage{
 testing_assoc(lm_full,
@@ -19,7 +19,7 @@ testing_assoc(lm_full,
 Coefficients from the regression
 }
 \description{
-Function that tests for associations and returns results
+Function that tests for associations and returns results.  DOES NOT merge with gene info, for use with tpm datasets.
 This function will do a single linear regression and extract the coefficients from the regression.
 }
 \examples{
