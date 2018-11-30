@@ -41,8 +41,10 @@ examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_fo
   print(summary(lm(resids$transcript~resids$CN)))
   if(is.na(col))
   {
-  	g <- ggplot(resids, aes(x=CN, y=transcript))+geom_point()+geom_smooth(method="lm", formula=y~x)
-  } else{ g <- ggplot(resids, aes(x=CN, y=transcript, col = col))+geom_point()+geom_smooth(method="lm", formula=y~x)}
+  	g <- ggplot(resids, aes(x=CN, y=transcript))+geom_point()+geom_smooth(method="lm", formula=y~x) +xlab('mtDNA-CN') + ylab(paste0('residuals for ', transcript))
+  } else{ g <- ggplot(resids, aes(x=CN, y=transcript, col = col))+geom_point()+geom_smooth(method="lm", formula=y~x) +xlab('mtDNA-CN')+ ylab(paste0('residuals for ', transcript))
+        }
+  return(g)
 }
 
 # examine_transcript(lm_full, 'ENSG00000225972.1', 291) + ylab('MT-ND1P23')
