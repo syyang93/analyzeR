@@ -17,20 +17,23 @@ examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_fo
                   lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10', col = NA){
   indiv <- nrow(lm_data)
   require(ggplot2)
-  resids<-as.data.frame(matrix(NA, nrow=indiv, ncol=2))
-  colnames(resids) <- c('transcript', 'CN')
+  resids <- as.data.frame(matrix(NA, nrow = indiv, ncol = 2))
+  colnames(resids) <- c("transcript", "CN")
   index <- which(colnames(lm_data) == transcript)
-  form <- as.formula(paste0('lm_data[,index] ~ ', correct_for))
-  lm_test <- lm(form, na.action=na.exclude)
-  resids$transcript<-scale(resid(lm_test))
-  if(omit.outlier == T)
-  {
+  if (omit.outlier == T) {
     outlier_sd <- 3
-    m <- mean(resids$transcript)
-    s <- sd(resids$transcript)
-    outliers <- which(resids$transcript > m + outlier_sd*s | resids$transcript < m - outlier_sd*s)
-    if(length(outliers) != 0){resids$transcript[outliers] <- NA}
+    m <- mean(lm_data[,index])
+    s <- sd(lm_data[,index])
+    outliers <- which(lm_data[,index] > m + outlier_sd * 
+                        s | lm_data[,index] < m - outlier_sd * s)
+    if (length(outliers) != 0) {
+      lm_data[outliers, index] <- NA
+    }
   }
+  form <- as.formula(paste0("lm_data[,index] ~ ", correct_for))
+  lm_test <- lm(form, na.action = na.exclude)
+  resids$transcript <- scale(resid(lm_test))
+  
   resids$CN<-lm_data$mtDNA_adjust_AGE
   resids$col <- lm_data[[col]]
   resids$esoph_day <- lm_data$esoph_day
