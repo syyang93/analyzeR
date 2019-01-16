@@ -16,7 +16,7 @@ testing_assoc <- function (lm_full, to_correct = "+ as.factor(covariates$SEX) + 
 {
   for_test <- lm_full[, grep("ENSG", colnames(lm_full))]
   covariates <- lm_full[, -grep("ENSG", colnames(lm_full))]
-  MT_count_index <- grep("mtDNA_adjust_AGE", colnames(lm_full))
+  MT_count_index <- grep("^mtDNA_adjust_AGE$", colnames(lm_full))
   MT_count <- as.numeric(lm_full[, MT_count_index])
   lm_results <- apply(for_test, 2, lm_test, count = MT_count,
                       covariates = covariates, correct_for = to_correct)
