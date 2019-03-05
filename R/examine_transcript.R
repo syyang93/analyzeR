@@ -14,7 +14,7 @@
 #' examine_transcript(blood_full, 'ENSG00000141527.16', omit.outlier = T, correct_for = 'as.factor(lm_data$SEX)', col = 'esoph_day')
 
 examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_for = 'as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +
-                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10', col = NA){
+                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10 + lm_data$Genotyping.PC1 + lm_data$Genotyping.PC2 + lm_data$Genotyping.PC3', col = NA){
   indiv <- nrow(lm_data)
   require(ggplot2)
   resids <- as.data.frame(matrix(NA, nrow = indiv, ncol = 2))
