@@ -2,6 +2,7 @@
 
 export(add_cov)
 export(examine_symbol)
+export(examine_symbol.mesa)
 export(examine_transcript)
 export(filtering_steps)
 export(find_outliers)
