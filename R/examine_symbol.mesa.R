@@ -50,21 +50,3 @@ examine_symbol.mesa <- function(lm_data, symbol, gene_key, omit.outlier = T, cor
         }
   return(g)
 }
-
-# examine_transcript(lm_full, 'ENSG00000225972.1', 291) + ylab('MT-ND1P23')
-# lm_full$submitted_subject_id[order(lm_full$ENSG00000225972.1)]
-# write.csv(lm_full$submitted_subject_id[order(lm_full$ENSG00000225972.1, decreasing = T)], file = '/Users/arkinglab/Desktop/vamsee.csv', quote = F, row.names = F)
-
-
-# examine_transcript(lm_full, 'ENSG00000256525.6', 308) + ggtitle('POLG2')
-# examine_transcript(lm_full, 'ENSG00000140521.12', 308) + ggtitle('POLG')
-# examine_transcript(lm_full, "ENSG00000108064.10", 308) + ggtitle('TFAM')
-# examine_transcript(lm_full, "ENSG00000186814.12", 308) + ggtitle('ZSCAN30')
-# examine_transcript(lm_full, "ENSG00000108064.10", 308) + ggtitle('TFAM')
-
-
-# examine_transcript(lm_full, 'ENSG00000256525.6', 308) + ggtitle('POLG2')
-# examine_transcript(lm_full, 'ENSG00000140521.12', 308) + ggtitle('POLG')
-# examine_transcript(lm_full, "ENSG00000108064.10", 308) + ggtitle('TFAM')
-# examine_transcript(lm_full, "ENSG00000186814.12", 308) + ggtitle('ZSCAN30')
-# examine_transcript(lm_full, "ENSG00000178057.14", 291) + ggtitle('NDUFAF3')
