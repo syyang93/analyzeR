@@ -1,5 +1,5 @@
 # analyzeR
-R package for Stephanie's analysis of recount data
+R package for Stephanie's analyses
 
 How to install: 
 ```
