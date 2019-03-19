@@ -31,3 +31,4 @@ lm_test <- function(lm_data, count, covariates = '', correct_for = '', outlier_s
   lm_MT <- lm(formula, na.action=na.exclude)
   care <- coef(summary(lm_MT))["count",]
 }
+
