@@ -1,23 +1,27 @@
-#' Function that will get the variables you need to run all the lms in parallel 
+#' Function that will run a regression for your variable of interest across all genes, in parallel.  Adapted from Vamsee (github.com/vkp3/pillalamarRi)
 #' 
-#' @param lm_full A data frame with all variables.  Column = genes, covariates, etc. Rows = observations (in this case, individuals)
-#' @param permutevar The main variable, as a string (for my case, mtDNA-CN)
-#' @param covnames Names of the covariates to be included in the regression, a vector of strings.
-#' @export
+#' @param tx_expr Expression matrix in form: [genes x samples]. Will be converted to a list(!) of gene-expr vectors (if not input as list)
+#' @param gene.ids Character vector of gene IDs, corresponding to rows in `tx_expr` [genes x samples]
+#' @param cov Regression covariates [cov x samples]
+#' @param SCORE Main covariate to be permuted (not included in `cov`)
+#' @param omit.outlier Whether or not you want to omit gene expression outliers
+#' @param num.cores The number of cores you would like to use
+#' @export 
 #' 
-#' @return a list containing tx_expr, cov, gene.ids, and SCORE, all of which are to be fed into the function "run.all.lms"
+#' @return All regression coefficients for lm(gene expression ~ SCORE + cov) for all genes
 #' 
 #' @examples
-#' my.list <- get.vars.runall.lms(lm_full, permutevar = 'mtDNA_adjust_AGE')
+#' lm_res.sort <- function(my.list[[1]], my.list[[2]], my.list[[3]], my.list[[4]], omit.outlier = T, num.cores = 10)
 
-run.all.lms <- function(tx_expr, cov, gene.ids, SCORE, num.cores = 10)
+run.all.lms <- function(tx_expr, cov, gene.ids, SCORE, omit.outlier = T, num.cores = 10)
 {
   require(pbapply)
   lm.res <-
     pblapply(tx_expr,            # Expression vector list for `pbapply::pblapply`
-             run_lm,              # This function
+             run_lm_default,     # This function
              cov = cov,           # Covariate matrix, as desribed above
              SCORE = SCORE,       # PRS
+             omit.outlier = omit.outlier,
              method = 'default',# Choose between 'default' or 'two-stage'
              cl = num.cores)      # Number of cores to parallelize over
   
