@@ -1,4 +1,4 @@
-#' Basic function that is used in run.all.lms.  Adapted from Vamsee (github.com/vkp3/pillalamarRi)
+#' Basic function that is used in run.all.lms.  Needs to be called by run_lm.  Adapted from Vamsee (github.com/vkp3/pillalamarRi)
 #' 
 #' Runs linear regression to estimate effect of SCORE on gene expression
 #' @description formula: Expr ~ SCORE + Cov, where Cov = covariates

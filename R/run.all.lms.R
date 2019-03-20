@@ -11,14 +11,14 @@
 #' @return All regression coefficients for lm(gene expression ~ SCORE + cov) for all genes
 #' 
 #' @examples
-#' lm_res.sort <- function(my.list[[1]], my.list[[2]], my.list[[3]], my.list[[4]], omit.outlier = T, num.cores = 10)
+#' lm_res.sort <- run.all.lms(my.list[[1]], my.list[[2]], my.list[[3]], my.list[[4]], omit.outlier = T, num.cores = 10)
 
 run.all.lms <- function(tx_expr, cov, gene.ids, SCORE, omit.outlier = T, num.cores = 10)
 {
   require(pbapply)
   lm.res <-
     pblapply(tx_expr,            # Expression vector list for `pbapply::pblapply`
-             run_lm_default,     # This function
+             run_lm,             # This function
              cov = cov,           # Covariate matrix, as desribed above
              SCORE = SCORE,       # PRS
              omit.outlier = omit.outlier,
@@ -38,7 +38,8 @@ run.all.lms <- function(tx_expr, cov, gene.ids, SCORE, omit.outlier = T, num.cor
   colnames(lm.res) <- gene.ids
   
   # Sort results by p-value
-  lm.res <- as.data.frame(t(lm.res))
-  lm_res.sort <- lm.res[order(lm.res$pval), ]
-  return(lm_res.sort)
+  # No sorting! This will mess up the permutation saving
+  # lm.res <- as.data.frame(t(lm.res))
+  # lm_res.sort <- lm.res[order(lm.res$pval), ]
+  # return(lm_res.sort)
 }
