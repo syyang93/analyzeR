@@ -2,23 +2,30 @@
 % Please edit documentation in R/run.all.lms.R
 \name{run.all.lms}
 \alias{run.all.lms}
-\title{Function that will get the variables you need to run all the lms in parallel}
+\title{Function that will run a regression for your variable of interest across all genes, in parallel.  Adapted from Vamsee (github.com/vkp3/pillalamarRi)}
 \usage{
-run.all.lms(tx_expr, cov, gene.ids, SCORE, num.cores = 10)
+run.all.lms(tx_expr, cov, gene.ids, SCORE, omit.outlier = T,
+  num.cores = 10)
 }
 \arguments{
-\item{lm_full}{A data frame with all variables.  Column = genes, covariates, etc. Rows = observations (in this case, individuals)}
+\item{tx_expr}{Expression matrix in form: [genes x samples]. Will be converted to a list(!) of gene-expr vectors (if not input as list)}
 
-\item{permutevar}{The main variable, as a string (for my case, mtDNA-CN)}
+\item{cov}{Regression covariates [cov x samples]}
 
-\item{covnames}{Names of the covariates to be included in the regression, a vector of strings.}
+\item{gene.ids}{Character vector of gene IDs, corresponding to rows in `tx_expr` [genes x samples]}
+
+\item{SCORE}{Main covariate to be permuted (not included in `cov`)}
+
+\item{omit.outlier}{Whether or not you want to omit gene expression outliers}
+
+\item{num.cores}{The number of cores you would like to use}
 }
 \value{
-a list containing tx_expr, cov, gene.ids, and SCORE, all of which are to be fed into the function "run.all.lms"
+All regression coefficients for lm(gene expression ~ SCORE + cov) for all genes
 }
 \description{
-Function that will get the variables you need to run all the lms in parallel
+Function that will run a regression for your variable of interest across all genes, in parallel.  Adapted from Vamsee (github.com/vkp3/pillalamarRi)
 }
 \examples{
-my.list <- get.vars.runall.lms(lm_full, permutevar = 'mtDNA_adjust_AGE')
+lm_res.sort <- run.all.lms(my.list[[1]], my.list[[2]], my.list[[3]], my.list[[4]], omit.outlier = T, num.cores = 10)
 }
