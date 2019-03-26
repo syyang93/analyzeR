@@ -12,6 +12,7 @@
 #'         ['intercept', 'beta', 'SE', 't_value', 'pval', 'beta.conf.low', 'beta.conf.high', 'corr.rho']
 #' 
 #' Author: Vamsee Pillalamarri
+#' @export
  
 
 run_lm <- function(expr, cov, SCORE, omit.outlier = T, method='default') {
