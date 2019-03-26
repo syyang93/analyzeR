@@ -36,10 +36,10 @@ run.all.lms <- function(tx_expr, cov, gene.ids, SCORE, omit.outlier = T, num.cor
       'conf.high',
       'corr.rho')
   colnames(lm.res) <- gene.ids
+ lm.res <- as.data.frame(t(lm.res))
   return(lm.res)
   # Sort results by p-value
   # No sorting! This will mess up the permutation saving
-  # lm.res <- as.data.frame(t(lm.res))
   # lm_res.sort <- lm.res[order(lm.res$pval), ]
   # return(lm_res.sort)
 }
