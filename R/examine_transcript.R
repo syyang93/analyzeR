@@ -30,9 +30,12 @@ examine_transcript <- function(lm_data, transcript, omit.outlier = T, correct_fo
       lm_data[outliers, index] <- NA
     }
   }
-  form <- as.formula(paste0("lm_data[,index] ~ ", correct_for))
+  form <- as.formula(paste0("lm_data[,index] ~ lm_data$mtDNA_adjust_AGE + ", correct_for))
   lm_test <- lm(form, na.action = na.exclude)
-  resids$transcript <- scale(resid(lm_test))
+  print(coef(summary(lm_test))[2,])
+  
+  form2 <- as.formula(paste0("lm_data[,index] ~ ", correct_for))
+  lm_test <- lm(form2, na.action = na.exclude)
   
   resids$CN<-lm_data$mtDNA_adjust_AGE
   resids$col <- lm_data[[col]]
