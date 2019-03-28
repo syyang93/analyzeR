@@ -4,10 +4,10 @@
 \alias{pval_qqplot}
 \title{Function for drawing a p-value qqplot}
 \usage{
-pval_qqplot(lm_object, title = "QQ-plot")
+pval_qqplot(pvals, title = "QQ-plot")
 }
 \arguments{
-\item{lm_object}{The results of an lm that you want a p-value QQ-plot for}
+\item{pvals}{The p-values you would like to look at using a QQ-plot}
 }
 \value{
 A p-value QQ-plot

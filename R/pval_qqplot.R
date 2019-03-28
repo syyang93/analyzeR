@@ -1,6 +1,6 @@
 #' Function for drawing a p-value qqplot
 #' 
-#' @param lm_object The results of an lm that you want a p-value QQ-plot for
+#' @param pvals The p-values you would like to look at using a QQ-plot
 #' 
 #' @export
 #' 
@@ -10,8 +10,8 @@
 #' pval_qqplot(subcut_lm_results)
 
 
-pval_qqplot <- function(lm_object, title = 'QQ-plot') {
-  pvals <- lm_object$`Pr(>|t|)`
+pval_qqplot <- function(pvals, title = 'QQ-plot') {
+  pvals <- pvals
   observed <- sort(pvals)
   observed2 <- c(length(pvals))
   observed2null <- -(log10(observed2 / (length(observed2)+1)))
