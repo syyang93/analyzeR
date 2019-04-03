@@ -17,6 +17,7 @@
 
 run_lm_default <- function(expr, cov, SCORE, omit.outlier = T, outlier_sd = 3) {
   expr <- as.numeric(expr)
+  expr <- scale(expr)
   expr_cov <- cbind(SCORE, expr, cov)
   
   if(omit.outlier == T)
