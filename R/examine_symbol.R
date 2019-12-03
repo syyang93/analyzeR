@@ -14,8 +14,9 @@
 #' @examples
 #' examine_transcript(blood_full, 'POLG', omit.outlier = T, correct_for = 'as.factor(lm_data$SEX)', col = 'esoph_day')
 
-examine_symbol <- function(lm_data, symbol, gene_key, omit.outlier = T, correct_for = 'as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +
-                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10 + lm_data$Genotyping.PC1 + lm_data$Genotyping.PC2 + lm_data$Genotyping.PC3', col = NA){
+examine_symbol <- function (lm_data, symbol, gene_key, omit.outlier = T, correct_for = "as.factor(lm_data$SEX) + as.numeric(lm_data$AGE) + as.numeric(lm_data$RACE) +\n                  lm_data$PC1 + lm_data$PC2 + lm_data$PC3 + lm_data$PC4 + lm_data$PC5 + lm_data$PC6 + lm_data$PC7 + lm_data$PC8 + lm_data$PC9 + lm_data$PC10 + lm_data$Genotyping.PC1 + lm_data$Genotyping.PC2 + lm_data$Genotyping.PC3",
+                            col = NA)
+{
   indiv <- nrow(lm_data)
   require(ggplot2)
   index <- grep(paste0("^", symbol, "$"), gene_key$symbol)
@@ -36,19 +37,19 @@ examine_symbol <- function(lm_data, symbol, gene_key, omit.outlier = T, correct_
       lm_data[outliers, index] <- NA
     }
   }
-  
-  form <- as.formula(paste0("lm_data[,index] ~ lm_data$mtDNA_adjust_AGE + ", correct_for))
+  #### added this line to scale things!
+  lm_data[,index] <- scale(lm_data[,index])
+  form <- as.formula(paste0("lm_data[,index] ~ lm_data$mtDNA_adjust_AGE + ",
+                            correct_for))
   lm_test <- lm(form, na.action = na.exclude)
-  print(coef(summary(lm_test))[2,])
   
+  print(coef(summary(lm_test))[2, ])
   form2 <- as.formula(paste0("lm_data[,index] ~ ", correct_for))
   lm_test <- lm(form2, na.action = na.exclude)
-  
   resids$transcript <- scale(resid(lm_test))
   resids$CN <- as.numeric(lm_data$mtDNA_adjust_AGE)
   resids$col <- lm_data[[col]]
   resids$esoph_day <- lm_data$esoph_day
-  
   if (is.na(col)) {
     g <- ggplot(resids, aes(x = CN, y = transcript)) + geom_point() +
       geom_smooth(method = "lm", formula = y ~ x) + xlab("mtDNA-CN") +
