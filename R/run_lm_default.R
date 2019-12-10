@@ -17,7 +17,9 @@
 
 run_lm_default <- function(expr, cov, SCORE, omit.outlier = T, outlier_sd = 3) {
   expr <- as.numeric(expr)
-  expr <- scale(expr)
+  
+  # stop scaling the expression values!
+  # expr <- scale(expr)
   expr_cov <- cbind(SCORE, expr, cov)
   
   if(omit.outlier == T)
@@ -25,7 +27,18 @@ run_lm_default <- function(expr, cov, SCORE, omit.outlier = T, outlier_sd = 3) {
     m <- mean(expr)
     s <- sd(expr)
     outliers <- which(expr > m + outlier_sd*s | expr < m - outlier_sd*s)
-    if(length(outliers) != 0){expr_cov$expr[outliers] <- NA}
+    if(length(outliers) != 0){
+      expr_cov$expr[outliers] <- NA
+      # second iteration
+      m <- mean(expr)
+      s <- sd(expr)
+      outliers <- which(expr > m + outlier_sd*s | expr < m - outlier_sd*s)
+      if(length(outliers) != 0){
+        # remove more outliers?  if outlier removal has to be done twice, omit that gene from testing?  
+        
+        
+      }
+    }
   }
   
   # # Run lm() normal procedure
