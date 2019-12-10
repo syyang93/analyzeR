@@ -28,5 +28,5 @@ Transcripts for those individuals
 Gets the adjusted variable plot for mtDNA vs transcripts for people who remain after filtering
 }
 \examples{
-examine_transcript(blood_full, 'POLG', omit.outlier = T, correct_for = 'as.factor(lm_data$SEX)', col = 'esoph_day')
+examine_symbol(blood_full, 'POLG', omit.outlier = T, correct_for = 'as.factor(lm_data$SEX)', col = 'esoph_day')
 }
