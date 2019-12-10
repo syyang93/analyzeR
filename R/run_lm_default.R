@@ -17,7 +17,6 @@
 
 run_lm_default <- function(expr, cov, SCORE, omit.outlier = T, outlier_sd = 3) {
   expr <- as.numeric(expr)
-  
   # stop scaling the expression values!
   # expr <- scale(expr)
   expr_cov <- cbind(SCORE, expr, cov)
