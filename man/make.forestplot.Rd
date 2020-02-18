@@ -4,12 +4,14 @@
 \alias{make.forestplot}
 \title{Makes forestplots for genes of interest across tissues}
 \usage{
-make.forestplot(gene, combined)
+make.forestplot(gene, combined, title = "")
 }
 \arguments{
 \item{gene}{gene you want to look at}
 
 \item{combined}{dataframe with genes + effect sizes + standard errors for each tissue}
+
+\item{title}{what you want to name the plot you make}
 }
 \value{
 writes out a forestplot to a pdf

@@ -2,6 +2,7 @@
 #' 
 #' @param gene gene you want to look at
 #' @param combined dataframe with genes + effect sizes + standard errors for each tissue
+#' @param title what you want to name the plot you make
 #' 
 #' @export
 #' 
@@ -11,7 +12,10 @@
 #' make.forestplot('YBX1P10', combined)
 
 
-make.forestplot <- function(gene, combined){
+make.forestplot <- function(gene, combined, title = ''){
+  # you will save the plot as gene_title
+  gene.title <- paste0(gene, title)
+  
   # required packages:
   require(forestplot)
   require(meta)
@@ -38,7 +42,7 @@ make.forestplot <- function(gene, combined){
                c(NA, NA,"Beta", formatC(gene.only$beta, format = "e", digits = 2), NA, formatC(m1$TE.random, format = "e", digits = 2)))
   
   # draw forestplot
-  pdf(paste0('/dcs01/arking/arkinglab/active/projects/GTeX/syang/look.version8/R_code/Cross.tissue.look/forestplots/', gene, '.pdf'), width = 12, height = 10, onefile = F)
+  pdf(paste0('/dcs01/arking/arkinglab/active/projects/GTeX/syang/look.version8/R_code/Cross.tissue.look/forestplots/', gene.title, '.pdf'), width = 13.3, height = 7.5, onefile = F)
   forestplot(text, means, lower, upper, col=fpColors(box="royalblue",line="darkblue", summary="royalblue"), is.summary=c(TRUE, FALSE, TRUE, rep(FALSE, nrow(gene.only)+1), TRUE))
   dev.off()
 }
